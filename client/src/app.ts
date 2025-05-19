@@ -1,11 +1,15 @@
 import { Component, PropsWithChildren } from 'react'
+import Taro, { Config } from '@tarojs/taro'
 
 import './app.scss'
 
+class App extends Component<PropsWithChildren>  {
 
-class App extends Component<PropsWithChildren> {
-
-  componentDidMount () {}
+  componentDidMount () {
+    if (process.env.TARO_ENV === 'weapp') {
+      Taro.cloud.init()
+    }
+  }
 
   componentDidShow () {}
 
@@ -16,6 +20,5 @@ class App extends Component<PropsWithChildren> {
     return this.props.children
   }
 }
-
 
 export default App
